@@ -6,20 +6,8 @@
         <div class="col-md-5 mx-auto">
             <form action="{{ url('student/create') }}" method="POST">
                 @csrf
-                <div class="form-group mt-2">
-                    <label for="event_id">Select Event</label>
-                    <select class="form-select" name="event_id" id="event_id">
-                        <option disabled {{ old('event_id') ? '' : 'selected' }}>Select Event</option>
-                        @foreach ($events as $eventId => $eventName)
-                            <option value="{{ $eventId }}" {{ old('event_id') == $eventId ? 'selected' : '' }}>
-                                {{ $eventName }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('event_id')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
+                
+                <!-- Event ID Field Removed -->
                 
                 <div class="form-group mt-2">
                     <label for="full_name">Full Name</label>

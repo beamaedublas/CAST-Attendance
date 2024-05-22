@@ -57,10 +57,10 @@
                         @enderror
                     </div>
                     <div class="form-group my-3 d-grid gap-2 d-md-flex justify-content-end">
-                        <button class="btn btn-primary me-md-2 mt-2">
+                        <button class="btn btn-sm btn-outline-primary">
                             Update Event
                         </button>
-                        <button type="button" class="btn btn-danger me-md-2 mt-2" data-bs-toggle="modal" data-bs-target="#deleteEventModal">
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteEventModal">
                             Delete Event
                         </button>
                     </div>

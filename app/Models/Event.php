@@ -11,10 +11,6 @@ class Event extends Model
 
     protected $fillable = ['title','description','date'];
 
-    public function students()
-    {
-        return $this->hasMany(Student::class);
-    }
 
     public function attendances()
     {

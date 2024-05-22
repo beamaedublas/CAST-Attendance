@@ -17,8 +17,8 @@ class EventFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'         => fake()->title(),
-            'description'   => fake()->word(),
+            'title'         => fake()->randomElement(['DEPT MEETING', 'MASS SPONSOR', 'CAST DAY']),
+            'description'   => fake()->word(100),
             'date'          => fake()->dateTimeBetween(2000-01-01, now()),
         ];
     }

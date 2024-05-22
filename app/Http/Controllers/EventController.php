@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Http\Request;
 
 
@@ -60,4 +60,12 @@ class EventController extends Controller
     $event->delete();
         return redirect('/event')->with('info', "$event->title has been deleted successfully!");
     }
+
+    public function index()
+{
+    $events = Event::all();
+
+    return view('events.index', compact('events'));
+}
+
 }

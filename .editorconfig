@@ -1,4 +1,4 @@
-root = true
+.env.exampleroot = true
 
 [*]
 charset = utf-8

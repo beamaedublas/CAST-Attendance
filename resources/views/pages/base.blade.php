@@ -5,120 +5,193 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <title>Laravel</title>
-
     <style>
-body {
+        body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('https://scontent.xx.fbcdn.net/v/t1.15752-9/403421843_323311470654039_7786248566664106911_n.png?_nc_cat=104&ccb=1-7&_nc_sid=510075&_nc_eui2=AeGFbUn89QYbkgi80spxWLlEoEbB9KrKoS6gRsH0qsqhLpDXEXI7tbFJvy2Te5a_Q7I2sXc5mPtr5KxpTHECh-G2&_nc_ohc=goZBVT2iwx0AX-nPJVH&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdSEynHvzSKHr6yeu3Mmu9KEnyz8ypcteLi66GqFNKKxIQ&oe=65A79AC7');
-            background-position: center center;
-            background-size: cover;
-            background-repeat: no-repeat;
+            background-color: #f8f9fa;
             height: 100vh;
-            margin: 0;
-
-
         }
 
-        h1 {
-         margin: 0;
-         font-size: 36px;
-         font-weight: bold;
-         color: #1b1b1b;
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #343a40;
+            color: #fff;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        header {
-            background-color: #333;
-            color: #070707;
-            padding: 10px;
-            text-align: center;
+        .sidebar img.circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
         }
 
-        nav {
-            background-color: #bcd6f1;
-            overflow: hidden;
+        .sidebar h1 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .sidebar nav {
             width: 100%;
-            height: 15%;
         }
 
-        nav a {
-            float: left;
-            display: block;
-            color: #0b0b0b;
-            text-align: center;
-            padding: 14px 16px;
+        .sidebar a {
+            color: #fff;
+            padding: 15px;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            transition: background-color 0.3s ease;
         }
 
-        .content {
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+
+        .sidebar a.active {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .sidebar a i {
+            margin-right: 10px;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .topbar {
+            background-color: #343a40;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .topbar.hidden {
+            display: none;
+        }
+
+        .container-fluid {
             padding: 20px;
         }
 
         table {
             width: 100%;
-            border-collapse: collapse;
             margin-top: 20px;
         }
 
         th, td {
-            border: 1px solid #151414;
-            padding: 8px;
+            padding: 12px;
             text-align: left;
+            border-bottom: 1px solid #dee2e6;
         }
 
         th {
-            background-color: #050505;
-            color: rgb(7, 7, 7);
+            background-color: #f1f1f1;
         }
 
         .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            outline: none;
-            background-color: #0a0a0a;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 14px;
         }
 
         .btn-primary {
-            background-color: #070707;
+            background-color: #007bff;
+            border: none;
         }
 
-        .nav li{
-            color: white;
+        .btn-success {
+            background-color: #28a745;
+            border: none;
         }
 
+        .btn-warning {
+            background-color: #ffc107;
+            border: none;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-light">
+    <div class="sidebar">
+        <img src="{{ asset('images/cast logo.jpg') }}" alt="Logo" class="circle">
         <h1>CAST ATTENDANCE</h1>
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link {{Request::is('home') ? 'active' : ''}}" href="{{ url( '/') }}">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{Request::is('event') ? 'active' : ''}}" href="{{ url( '/event') }}">Events</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{Request::is('student') ? 'active' : ''}}" href="{{ url( '/student') }}">Students</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{Request::is('attendance') ? 'active' : ''}}" href="{{ url( '/attendance') }}">Attendance</a>
-            </li>
-        </ul>
-    </nav>
-
-    <div class="container mt-5">
-        @yield('content')
+        <nav>
+            <a href="{{ url('/') }}" class="{{ Request::is('/') ? 'active' : '' }}"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="{{ url('/event') }}" class="{{ Request::is('event') ? 'active' : '' }}"><i class="fas fa-calendar-alt"></i> Events</a>
+            <a href="{{ url('/student') }}" class="{{ Request::is('student') ? 'active' : '' }}"><i class="fas fa-user-graduate"></i> Students</a>
+            <a href="{{ url('/attendance') }}" class="{{ Request::is('attendance') ? 'active' : '' }}"><i class="fas fa-check-square"></i> Attendance</a>
+        </nav>
     </div>
+
+    <div class="main-content">
+        <div class="topbar" id="topbar">
+            <h1 id="topbar-title">CAST ATTENDANCE</h1>
+        </div>
+
+        <div class="container-fluid mt-5">
+            @yield('content')
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.sidebar a');
+            const topbar = document.getElementById('topbar');
+            const topbarTitle = document.getElementById('topbar-title');
+
+            links.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    
+                    event.preventDefault();
+
+                    
+                    links.forEach(l => l.classList.remove('active'));
+
+                    this.classList.add('active');
+
+                   
+                    if (this.querySelector('i').classList.contains('fa-house')) {
+                        topbar.classList.add('hidden');
+                    } else {
+                        topbar.classList.remove('hidden');
+                       
+                        topbarTitle.textContent = this.textContent.trim();
+                    }
+
+                    
+                    window.location.href = this.href;
+                });
+            });
+
+           
+            if (document.querySelector('.sidebar a.active i').classList.contains('fa-house')) {
+                topbar.classList.add('hidden');
+            } else {
+                topbarTitle.textContent = document.querySelector('.sidebar a.active').textContent.trim();
+            }
+        });
+    </script>
 </body>
 </html>

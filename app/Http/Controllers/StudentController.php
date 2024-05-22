@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
 use App\Models\Student;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -16,23 +17,19 @@ class StudentController extends Controller
 
     public function create()
     {
-        $events = Event::list(); 
-        return view('student.create', compact('events'));
+        return view('student.create');
     }
-
 
 
     public function store(Request $request)
     {
         $request->validate([
-            'event_id' => 'required|numeric',
             'full_name' => 'required',
             'year_level' => 'required',
             'address' => 'required',
         ]);
 
         Student::create([
-            'event_id' => $request->event_id,
             'full_name' => $request->full_name,
             'year_level' => $request->year_level,
             'address' => $request->address,
@@ -42,16 +39,15 @@ class StudentController extends Controller
     }
 
     public function edit($id){
-        $events = Event::list();
         $student = Student::findOrFail($id);
-        return view('student.edit', compact('events', 'student'));
+        return view('student.edit', compact( 'student'));
     }
     
 
     public function update(Student $student, Request $request)
     {
         $request->validate([
-            'event_id' => 'required|numeric',
+
             'full_name' => 'required',
             'year_level' => 'required',
             'address' => 'required',
@@ -66,4 +62,20 @@ class StudentController extends Controller
         $student->delete();
         return redirect('/student')->with('info', "$student->full_name has been deleted successfully");
     }
+    
+    public function index()
+    {
+        $students = Student::all();
+
+        return view('students.index', compact('students'));
+    }
+
+    public function pdf()
+    {
+        $students = Student::latest()->get();
+        $pdf = Pdf::loadView('student/pdf', ['students' => $students]);
+
+        return $pdf->download('students-list.pdf', $pdf);
+    }
+    
 }

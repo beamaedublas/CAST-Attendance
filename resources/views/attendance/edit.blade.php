@@ -78,10 +78,10 @@
                         </div>
 
                         <div class="form-group mt-3 d-grid gap-2 d-md-flex justify-content-end">
-                            <button class="btn btn-primary me-md-2 mt-2">
+                            <button class="btn btn-sm btn-outline-primary">
                                 Update Attendance
                             </button>
-                            <button type="button" class="btn btn-danger me-md-2 mt-2" data-bs-toggle="modal" data-bs-target="#deleteAttendanceModal">
+                            <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteAttendanceModal">
                                 Delete Attendance
                             </button>
                         </div>

@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +17,6 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-            'event_id'      =>fake()->randomElement(Event::pluck('id')),
             'full_name'     =>fake()->name(),
             'year_level'    =>fake()->randomElement(['1','2','3','4']),
             'address'       =>fake()->address(),

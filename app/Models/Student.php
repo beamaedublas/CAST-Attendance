@@ -9,18 +9,13 @@ class Student extends Model
 {
     use HasFactory;
 
-    public function event()
-    {
-        return $this->belongsTo(Event::class);
-    }
-
     public function attendances()
     {
         return $this->hasMany(Attendance::class);
 
     }
 
-    protected $fillable = ['event_id','full_name','year_level','address'] ;
+    protected $fillable = ['full_name','year_level','address'] ;
 
     public static function list() {
 

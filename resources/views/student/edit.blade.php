@@ -37,21 +37,8 @@
                 <form action="{{ url('student/' . $student->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <div class="form-group mt-2">
-                        <label for="event_id">Select Event</label>
-                        <select class="form-select" name="event_id" id="event_id">
-                            <option disabled>Select Event</option>
-                            @foreach ($events as $eventId => $eventName)
-                                <option value="{{ $eventId }}" {{ $student->event_id == $eventId ? 'selected' : '' }}>
-                                    {{ $eventName }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('event_id')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    
+                    <!-- Event ID Field Removed -->
+
                     <div class="form-group mt-2">
                         <label for="full_name">Full name</label>
                         <input type="text" name="full_name" id="full_name" placeholder="Enter full_name..." class="form-control" value="{{ $student->full_name }}">
@@ -77,10 +64,10 @@
                     </div>
 
                     <div class="form-group my-3 d-grid gap-2 d-md-flex justify-content-end">
-                        <button class="btn btn-primary me-md-2 mt-2">
+                        <button class="btn btn-sm btn-outline-primary">
                             Update Student
                         </button>
-                        <button type="button" class="btn btn-danger me-md-2 mt-2" data-bs-toggle="modal" data-bs-target="#deleteStudentModal">
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteStudentModal">
                             Delete Student
                         </button>
                     </div>
